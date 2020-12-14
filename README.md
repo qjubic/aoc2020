@@ -1,2 +1,3 @@
 # aoc2020
-https://adventofcode.com/
+
+my solutions for https://adventofcode.com/ year 2020 learning Common Lisp
