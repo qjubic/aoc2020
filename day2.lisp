@@ -3,7 +3,6 @@
 (defvar *input* "pathhere")
 
 (defun get-list (input)
-  "This give a list of strings ready to convert from the input"
   (let ((x (with-open-file (in input)
               (loop for line = (read-line in nil)
                     while line
