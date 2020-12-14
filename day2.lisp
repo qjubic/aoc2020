@@ -1,6 +1,6 @@
 ;;;https://adventofcode.com/2020/day/2
 
-(defvar *input* "c:/Users/lzakr/projects/cl/adventofcode/day2/input.txt")
+(defvar *input* "pathhere")
 
 (defun get-list (input)
   "This give a list of strings ready to convert from the input"
