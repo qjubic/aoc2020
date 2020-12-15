@@ -3,7 +3,7 @@
 (defvar *input* "pathhere")
 
 (defun get-list (input)
-  (let ((x (with-open-file (in input)
+    (let ((x (with-open-file (in input)
               (loop for line = (read-line in nil)
                     while line
                     collect (substitute #\space #\: (substitute #\space #\- line))))))
@@ -22,9 +22,25 @@
   (let ((x (count (third passwordrule) (fourth passwordrule))))
     (if (and (>= x (first passwordrule))(<= x (second passwordrule))) 1 0)))
 
+(defun validate-p2 (passwordrule)
+  (cond ((and (char-equal (char (fourth passwordrule) (1- (first passwordrule)))
+                          (third passwordrule))
+              (not (char-equal (char (fourth passwordrule) (1- (second passwordrule)))
+                               (third passwordrule))))
+         1)
+        ((and (not (char-equal (char (fourth passwordrule) (1- (first passwordrule)))
+                               (third passwordrule)))
+              (char-equal (char (fourth passwordrule) (1- (second passwordrule)))
+                             (third passwordrule)))
+         1)
+        (t 0)))
 
 (defun day2 (input)
   (let* ((x (get-list input))
         (y (map 'list #'validate x)))
     (reduce #'+ y)))
 
+(defun day2-p2 (input)
+  (let* ((x (get-list input))
+         (y (map 'list #'validate-p2 x)))
+    (reduce #'+ y)))
