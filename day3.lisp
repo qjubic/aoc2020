@@ -1,6 +1,6 @@
 ;;;https://adventofcode.com/2020/day/3
 
-(defvar *input* "Pathtoinputfile")
+(defvar *input* "Pathtoinputfilehere")
 
 (defun get-input (input)
   (let ((x (with-open-file (in input)
@@ -22,6 +22,13 @@
       (if (>= v-pos (length input)) (values trees turn)
           (slide-down input hstep vstep (1+ turn) (+ trees (slide (find-h-pos) v-pos)))))))
 
-
 (defun day3p1 ()
   (slide-down (get-input *input*) 3 1 1 0))
+
+(defun day3p2 ()
+  (let ((input (get-input *input*))
+        (hsteps '(1 3 5 7 1))
+        (vsteps '(1 1 1 1 2)))
+    (reduce #'* (loop for x in hsteps
+                      for y in vsteps
+                      collect (slide-down input x y 1 0)))))
