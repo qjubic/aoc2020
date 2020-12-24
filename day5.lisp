@@ -20,7 +20,7 @@
               ((char-equal stringvalue #\R) (go-binary string steplist (1+ step) row (+ column (/ stepvalue 2))))))))
 
 (defun calc-seat-id (seat)
-  (+ 5 (* 8 (first seat))))
+  (+ (second seat (* 8 (first seat))))
 
 (defun find-highest-seat-id (inputlist steps &Optional (highest-id 0))
   (if (equal inputlist '()) highest-id
